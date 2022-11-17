@@ -11,20 +11,25 @@ int main() {
     getline(std::cin, TextLineOne);
     double num;
     std::istringstream LineStream(TextLineOne);
-    std::regex rx("[+-]?([0-9]*[\\.])?[0-9]+|[“ “]");
-    while (!std::regex_search(TextLineOne, rx)) {
+    std::regex rx("(([-]?([0-9]+[\\.])?([0-9]+))([“ “])?)(([“ “][-]?([0-9]+[\\.])?([0-9]+))([“ “])?)*");
+    while (!std::regex_match(TextLineOne, rx)) {
         std::cout << "error\n";
         LineStream.clear();
         getline(std::cin, TextLineOne);
         LineStream.str(TextLineOne);
-        std::istringstream LineStream(TextLineOne);
-    }
+        }
     while (LineStream >> num) {
         FirstVector.push_back(num);
     }
     LineStream.clear();
     getline(std::cin, TextLineTwo);
     LineStream.str(TextLineTwo);
+    while (!std::regex_match(TextLineTwo, rx)) {
+        std::cout << "error\n";
+        LineStream.clear();
+        getline(std::cin, TextLineTwo);
+        LineStream.str(TextLineTwo);
+    }
     while (LineStream >> num) {
         SecondVector.push_back(num);
     }
