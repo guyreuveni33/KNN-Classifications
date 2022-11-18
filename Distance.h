@@ -1,8 +1,11 @@
-//
-// Created by niv swisa on 18/11/2022.
-//
+#include <vector>
 
-#ifndef AP2022_DISTANCE_H
-#define AP2022_DISTANCE_H
+double Minkowski(std::vector<double> &v1, std::vector<double> &v2, int x);
 
-#endif //AP2022_DISTANCE_H
+double Euclidean(std::vector<double> &v1, std::vector<double> &v2);
+
+double Manhattan(std::vector<double> &v1, std::vector<double> &v2);
+
+double Canberra(std::vector<double> &v1, std::vector<double> &v2);
+
+double Chebyshev(std::vector<double> &v1, std::vector<double> &v2);
