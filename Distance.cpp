@@ -41,3 +41,26 @@ double Canberra(std::vector<double> &v1, std::vector<double> &v2) {
         return sum;
     }
 }
+double Chebyshev(std::vector<double> &v1, std::vector<double> &v2) {
+    int l;
+    double max;
+    l = v1.size();
+    if ((v1.at(0) < 0)) {
+        v1.push_back(v1.at(0) * (-1));
+    }
+    if ((v2.at(0) < 0)) {
+        v2.push_back(v2.at(0) * (-1));
+        max = v1.at(0) - v2.at(0);
+        for (int i = 1; i < l; ++i) {
+            if ((v1.at(i) < 0)) {
+                v1.push_back(v1.at(i) * (-1));
+            }
+            if ((v2.at(i) < 0)) {
+                v2.push_back(v2.at(i) * (-1));
+            }
+            if (v1.at(0) - v2.at(0) > max)
+                max = (v1.at(0) - v2.at(0));
+        }
+        return max;
+    }
+}
