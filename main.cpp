@@ -26,8 +26,19 @@ int main() {
     std::string TextLineOne;
     std::string TextLineTwo;
     getline(std::cin, TextLineOne);
+    int i, k;
+    for (i = 1; i<TextLineOne.size(); i++) {
+        if (TextLineOne[i-1] == 32 && TextLineOne[i] == 32 ) {
+            return 0;
+        }
+    }
     double num;
     std::istringstream LineStream(TextLineOne);
+    std::string s;
+    while(LineStream >> s ){
+        std::cout << s;
+    }
+    /**
     std::regex rx("(([-]?([0-9]+[\\.])?([0-9]+))([“ “])?)(([“ “][-]?([0-9]+[\\.])?([0-9]+))([“ “])?)*");
     while (!std::regex_match(TextLineOne, rx)) {
         std::cout << "error\n";
@@ -54,6 +65,7 @@ int main() {
         std::cout << "the vectors are non equivalent";
         return 0;
     }
+     **/
     double EuclideanNum, ManhattanNum, ChebyshevNum, CanberraNum, MinkowskiNum;
     EuclideanNum = Euclidean(FirstVector, SecondVector);
     ManhattanNum = Manhattan(FirstVector, SecondVector);
