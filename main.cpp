@@ -3,6 +3,8 @@
 #include <regex>
 #include "Distance.h"
 
+using namespace std;
+
 /**
  * If the double is an integer, return 1, else return 16
  *
@@ -16,6 +18,25 @@ int PrecisionNum(double d) {
     } else return 16;
 }
 
+int numCheck(string s) {
+    int i, flag = 0;
+    if (!isdigit(s[0])) {
+        return 0;
+    }
+    for (i = 1; i < s.size(); i++) {
+        if (!(isdigit(s[i]))) {
+            if (s[i] == 46) {
+                flag++;
+                continue;
+            }
+        }
+        if (flag>=2) {
+            return 0;
+        }
+    }
+    return 1;
+}
+
 /**
  * It takes two vectors of doubles, and returns the Euclidean distance between them
  *
@@ -27,16 +48,20 @@ int main() {
     std::string TextLineTwo;
     getline(std::cin, TextLineOne);
     int i, k;
-    for (i = 1; i<TextLineOne.size(); i++) {
-        if (TextLineOne[i-1] == 32 && TextLineOne[i] == 32 ) {
+    for (i = 1; i < TextLineOne.size(); i++) {
+        if (TextLineOne[i - 1] == 32 && TextLineOne[i] == 32) {
+            std::cout << "error";
             return 0;
         }
     }
     double num;
     std::istringstream LineStream(TextLineOne);
     std::string s;
-    while(LineStream >> s ){
-        std::cout << s;
+    while (LineStream >> s) {
+        if (!numCheck(s)) {
+            std::cout << "error2";
+            return 0;
+        }
     }
     /**
     std::regex rx("(([-]?([0-9]+[\\.])?([0-9]+))([“ “])?)(([“ “][-]?([0-9]+[\\.])?([0-9]+))([“ “])?)*");
@@ -66,7 +91,7 @@ int main() {
         return 0;
     }
      **/
-    double EuclideanNum, ManhattanNum, ChebyshevNum, CanberraNum, MinkowskiNum;
+    /**double EuclideanNum, ManhattanNum, ChebyshevNum, CanberraNum, MinkowskiNum;
     EuclideanNum = Euclidean(FirstVector, SecondVector);
     ManhattanNum = Manhattan(FirstVector, SecondVector);
     ChebyshevNum = Chebyshev(FirstVector, SecondVector);
@@ -83,7 +108,7 @@ int main() {
     std::cout << CanberraNum << std::endl;
     std::cout.precision(PrecisionNum(MinkowskiNum));
     std::cout << MinkowskiNum << std::endl;
-    return 0;
+    return 0;**/
 
 }
 
