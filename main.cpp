@@ -137,6 +137,7 @@ int main() {
     if (FirstVector.size() != SecondVector.size()) {
         std::cout << "the vectors are non equivalent";
         return 0;
+
     }
     double EuclideanNum, ManhattanNum, ChebyshevNum, CanberraNum, MinkowskiNum;
     EuclideanNum = Euclidean(FirstVector, SecondVector);
