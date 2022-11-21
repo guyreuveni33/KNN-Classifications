@@ -1,9 +1,10 @@
 #include <iostream>
 #include <sstream>
 #include <regex>
+#include <cmath>
 #include "Distance.h"
 
-using namespace std;
+//using namespace std;
 
 /**
  * If the double is an integer, return 1, else return 16
@@ -12,23 +13,27 @@ using namespace std;
  *
  * @return The number of digits after the decimal point.
  */
+
+
 int PrecisionNum(double d) {
     if (d == (int) d) {
         return 1;
     } else return 16;
 }
-int ValueCheck(string TextLine){
 
-}
-int numCheck(string s) {
-    int i, flag = 0;
-    if (!isdigit(s.at(0))) {
+int numCheck(std::string s) {
+    int i, flag = 0, flag2 = 0;
+    if (!isdigit(s.at(0)) && (s.at(0) != 45)) {
         return 0;
     }
-    for ( i = 0; i < s.size(); i++) {
+    for (i = 0; i < s.size(); i++) {
+        if ((s.at(0) == 45) && (s.size() > 1) && flag2 == 0) {
+            flag2 = 1;
+            continue;
+        }
         if (!(isdigit(s.at(i)))) {
             if (s.at(i) == 46) {
-                if (i == s.size()-1) {
+                if (i == s.size() - 1) {
                     return 0;
                 }
                 flag++;
@@ -40,10 +45,33 @@ int numCheck(string s) {
             return 0;
         }
     }
-return 1;
+    return 1;
 }
 
 
+int StringValidation(std::string TextLine) {
+    int i, k;
+    if (TextLine.empty()) {
+        std::cout << "N";
+        return 0;
+
+    }
+    if (TextLine.at(0) >= 1 && TextLine.at(0) <= 32) {
+        std::cout << "0E";
+        return 0;
+    }
+    for (i = 1; i < TextLine.size(); i++) {
+        if (TextLine.at(i) >= 1 && TextLine.at(i) <= 31) {
+            std::cout << "Werror";
+            return 0;
+        }
+        if (TextLine.at(i - 1) == 32 && TextLine.at(i) == 32) {
+            std::cout << "error";
+            return 0;
+        }
+    }
+    return 1;
+}
 
 /**
  * It takes two vectors of doubles, and returns the Euclidean distance between them
@@ -55,26 +83,8 @@ int main() {
     std::string TextLineOne;
     std::string TextLineTwo;
     getline(std::cin, TextLineOne);
-    int i, k;
-    if (TextLineOne.empty()){
-        std::cout << "N";
+    if (!StringValidation(TextLineOne))
         return 0;
-
-    }
-    if (TextLineOne.at(0)>=1 && TextLineOne.at(0)<=32) {
-        std::cout << "0E";
-        return 0;
-    }
-    for (i = 1; i < TextLineOne.size(); i++) {
-        if (TextLineOne.at(i)>=1 && TextLineOne.at(i)<=31) {
-            std::cout << "Werror";
-            return 0;
-        }
-        if (TextLineOne.at(i-1) == 32 && TextLineOne.at(i) == 32) {
-            std::cout << "error";
-            return 0;
-        }
-    }
     double num;
     std::istringstream LineStream(TextLineOne);
     std::string s;
@@ -83,16 +93,47 @@ int main() {
             std::cout << "error2";
             return 0;
         }
+        try {
+            double d = stod(s);
+            FirstVector.push_back(d);
+        }
+        catch (std::exception &e) {
+            std::cout << "errorEEEEE";
+            return 0;
+        }
     }
-    while (LineStream >> num) {
-        FirstVector.push_back(num);
-    }
+//    LineStream.str(TextLineOne);
+//    while (LineStream >> num) {
+//    }
+//    for (int j = 0; j < FirstVector.size(); j++) {
+//        std::cout << FirstVector.at(j);
+//    }
     LineStream.clear();
     getline(std::cin, TextLineTwo);
+    if (!StringValidation(TextLineTwo))
+        return 0;
+    double num2;
     LineStream.str(TextLineTwo);
-    while (LineStream >> num) {
-        SecondVector.push_back(num);
+    std::string s2;
+    while (LineStream >> s2) {
+        if (!numCheck(s2)) {
+            std::cout << "error2";
+            return 0;
+        }
+        try {
+            double d2 = stod(s2);
+            SecondVector.push_back(d2);
+        }
+        catch (std::exception &e2) {
+            std::cout << "errorEEEEE";
+            return 0;
+
+        }
     }
+
+//        while (LineStream >> num2) {
+//            SecondVector.push_back(num2);
+//        }
     if (FirstVector.size() != SecondVector.size()) {
         std::cout << "the vectors are non equivalent";
         return 0;
