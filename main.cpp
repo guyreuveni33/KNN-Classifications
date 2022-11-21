@@ -3,12 +3,24 @@
 #include <regex>
 #include "Distance.h"
 
+/**
+ * If the double is an integer, return 1, else return 16
+ *
+ * @param d the number to be formatted
+ *
+ * @return The number of digits after the decimal point.
+ */
 int PrecisionNum(double d) {
     if (d == (int) d) {
         return 1;
     } else return 16;
 }
 
+/**
+ * It takes two vectors of doubles, and returns the Euclidean distance between them
+ *
+ * @return The program returns the distance between two vectors.
+ */
 int main() {
     std::vector<double> FirstVector, SecondVector;
     std::string TextLineOne;
