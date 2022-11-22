@@ -1,16 +1,20 @@
 #include "Distance.h"
 #include "VectorCreation.h"
 
-
+/**
+ * It takes two vectors of doubles, and calculates the distance between them
+ *
+ * @return a boolean value.
+ */
 int main() {
     std::vector<double> FirstVector, SecondVector;
-    if(!(insertToVector(FirstVector))){
+    if(!(InsertToVector(FirstVector))){
         return 0;
     }
-    if(!(insertToVector(SecondVector))){
+    if(!(InsertToVector(SecondVector))){
         return 0;
     }
-    if(!(calculateDistance(FirstVector, SecondVector))) {
+    if(!(CalculateDistance(FirstVector, SecondVector))) {
         return 0;
     }
     return 0;

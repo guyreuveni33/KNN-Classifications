@@ -9,11 +9,13 @@ int PrecisionNum(double d) {
     } else return 16;
 }
 
-int numCheck(std::string s) {
+int NumCheck(std::string s) {
     int i, flag = 0, flag2 = 0;
+    // This is checking if the first character is a digit or a minus sign.
     if (!isdigit(s.at(0)) && (s.at(0) != 45)) {
         return 0;
     }
+    // This is checking if the string is a number.
     for (i = 0; i < s.size(); i++) {
         if ((s.at(0) == 45) && (s.size() > 1) && flag2 == 0) {
             flag2 = 1;
@@ -38,37 +40,37 @@ int numCheck(std::string s) {
 
 int StringValidation(std::string TextLine) {
     int i;
+    // This is checking if the string is empty.
     if (TextLine.empty()) {
-        std::cout << "N";
         return 0;
-
     }
+    // This is checking if the first character is a space.
     if (TextLine.at(0) >= 1 && TextLine.at(0) <= 32) {
-        std::cout << "0E";
         return 0;
     }
+    // This is checking if there are two spaces in a row.
     for (i = 1; i < TextLine.size(); i++) {
         if (TextLine.at(i) >= 1 && TextLine.at(i) <= 31) {
-            std::cout << "Werror";
             return 0;
         }
         if (TextLine.at(i - 1) == 32 && TextLine.at(i) == 32) {
-            std::cout << "error";
             return 0;
         }
     }
     return 1;
 }
-int insertToVector (std::vector<double> &vector) {
+
+int InsertToVector(std::vector<double> &vector) {
     std::string TextLine;
     getline(std::cin, TextLine);
+    // This is checking if the string is empty.
     if (!StringValidation(TextLine))
         return 0;
     std::istringstream LineStream(TextLine);
     std::string s;
+    /* This is checking if the string is a number. */
     while (LineStream >> s) {
-        if (!numCheck(s)) {
-            std::cout << "error2";
+        if (!NumCheck(s)) {
             return 0;
         }
         try {
@@ -76,7 +78,6 @@ int insertToVector (std::vector<double> &vector) {
             vector.push_back(d);
         }
         catch (std::exception &e) {
-            std::cout << "errorEEEEE";
             return 0;
         }
     }
@@ -84,17 +85,20 @@ int insertToVector (std::vector<double> &vector) {
     return 1;
 }
 
-int calculateDistance(std::vector<double> &FirstVector, std::vector<double> &SecondVector) {
+int CalculateDistance(std::vector<double> &FirstVector, std::vector<double> &SecondVector) {
+    /* This is checking if the vectors are the same size. */
     if (FirstVector.size() != SecondVector.size()) {
         std::cout << "the vectors are non equivalent";
         return 0;
     }
     double EuclideanNum, ManhattanNum, ChebyshevNum, CanberraNum, MinkowskiNum;
+    //calculating all the algorithms
     EuclideanNum = Euclidean(FirstVector, SecondVector);
     ManhattanNum = Manhattan(FirstVector, SecondVector);
     ChebyshevNum = Chebyshev(FirstVector, SecondVector);
     CanberraNum = Canberra(FirstVector, SecondVector);
     MinkowskiNum = Minkowski(FirstVector, SecondVector, 2);
+    //printing all the results
     std::fixed(std::cout);
     std::cout.precision(PrecisionNum(EuclideanNum));
     std::cout << EuclideanNum << std::endl;
