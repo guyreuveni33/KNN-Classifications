@@ -68,7 +68,7 @@ int InsertToVector(std::vector<double> &vector) {
         return 0;
     std::istringstream LineStream(TextLine);
     std::string s;
-    /* This is checking if the string is a number. */
+    // This is checking if the string is a number.
     while (LineStream >> s) {
         if (!NumCheck(s)) {
             return 0;
@@ -86,7 +86,7 @@ int InsertToVector(std::vector<double> &vector) {
 }
 
 int CalculateDistance(std::vector<double> &FirstVector, std::vector<double> &SecondVector) {
-    /* This is checking if the vectors are the same size. */
+    // This is checking if the vectors are the same size.
     if (FirstVector.size() != SecondVector.size()) {
         std::cout << "the vectors are non equivalent";
         return 0;
