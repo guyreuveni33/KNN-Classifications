@@ -1,19 +1,7 @@
 #include <iostream>
 #include <sstream>
 #include <regex>
-#include <cmath>
 #include "Distance.h"
-
-//using namespace std;
-
-/**
- * If the double is an integer, return 1, else return 16
- *
- * @param d the number to be formatted
- *
- * @return The number of digits after the decimal point.
- */
-
 
 int PrecisionNum(double d) {
     if (d == (int) d) {
@@ -48,9 +36,8 @@ int numCheck(std::string s) {
     return 1;
 }
 
-
 int StringValidation(std::string TextLine) {
-    int i, k;
+    int i;
     if (TextLine.empty()) {
         std::cout << "N";
         return 0;
@@ -73,11 +60,6 @@ int StringValidation(std::string TextLine) {
     return 1;
 }
 
-/**
- * It takes two vectors of doubles, and returns the Euclidean distance between them
- *
- * @return The program returns the distance between two vectors.
- */
 int main() {
     std::vector<double> FirstVector, SecondVector;
     std::string TextLineOne;
@@ -85,7 +67,6 @@ int main() {
     getline(std::cin, TextLineOne);
     if (!StringValidation(TextLineOne))
         return 0;
-    double num;
     std::istringstream LineStream(TextLineOne);
     std::string s;
     while (LineStream >> s) {
@@ -102,17 +83,10 @@ int main() {
             return 0;
         }
     }
-//    LineStream.str(TextLineOne);
-//    while (LineStream >> num) {
-//    }
-//    for (int j = 0; j < FirstVector.size(); j++) {
-//        std::cout << FirstVector.at(j);
-//    }
     LineStream.clear();
     getline(std::cin, TextLineTwo);
     if (!StringValidation(TextLineTwo))
         return 0;
-    double num2;
     LineStream.str(TextLineTwo);
     std::string s2;
     while (LineStream >> s2) {
@@ -130,10 +104,6 @@ int main() {
 
         }
     }
-
-//        while (LineStream >> num2) {
-//            SecondVector.push_back(num2);
-//        }
     if (FirstVector.size() != SecondVector.size()) {
         std::cout << "the vectors are non equivalent";
         return 0;
