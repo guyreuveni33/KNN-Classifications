@@ -1,7 +1,7 @@
 #include "Distance.h"
 #include <cmath>
 
-double Minkowski(std::vector<double> &v1, std::vector<double> &v2, int x) {
+double minkowski(std::vector<double> &v1, std::vector<double> &v2, int x) {
     int i;
     double sum = 0;
     for (i = 0; i < v1.size(); i++) {
@@ -15,47 +15,43 @@ double Minkowski(std::vector<double> &v1, std::vector<double> &v2, int x) {
     return distance;
 }
 
-double Euclidean(std::vector<double> &v1, std::vector<double> &v2) {
-    return Minkowski(v1, v2, 2);
+double euclidean(std::vector<double> &v1, std::vector<double> &v2) {
+    return minkowski(v1, v2, 2);
 }
 
-double Manhattan(std::vector<double> &v1, std::vector<double> &v2) {
-    return Minkowski(v1, v2, 1);
+double manhattan(std::vector<double> &v1, std::vector<double> &v2) {
+    return minkowski(v1, v2, 1);
 }
 
-double Canberra(std::vector<double> &v1, std::vector<double> &v2) {
-    int l;
-    double sum = 0, UpSum, DownSum, TempOne, TempTwo;
-    l = v1.size();
-    for (int i = 0; i < l; i++) {
-        UpSum = v1.at(i) - v2.at(i);
-        if ((UpSum < 0)) {
-            UpSum = UpSum * (-1);
+double canberra(std::vector<double> &v1, std::vector<double> &v2) {
+    double sum = 0, upperSum, lowerSum, tempOne, tempTwo;
+    for (int i = 0; i < v1.size(); i++) {
+        upperSum = v1.at(i) - v2.at(i);
+        if ((upperSum < 0)) {
+            upperSum = upperSum * (-1);
         }
-        TempOne = v1.at(i);
-        TempTwo = v2.at(i);
-        if (TempOne < 0)
-            TempOne = TempOne * (-1);
-        if (TempTwo < 0)
-            TempTwo = TempTwo * (-1);
-        if (TempOne == 0 && TempTwo == 0) {
+        tempOne = v1.at(i);
+        tempTwo = v2.at(i);
+        if (tempOne < 0)
+            tempOne = tempOne * (-1);
+        if (tempTwo < 0)
+            tempTwo = tempTwo * (-1);
+        if (tempOne == 0 && tempTwo == 0) {
             continue;
         }
-        DownSum = TempOne + TempTwo;
-        sum = sum + (UpSum / DownSum);
+        lowerSum = tempOne + tempTwo;
+        sum = sum + (upperSum / lowerSum);
     }
     return sum;
 }
 
-double Chebyshev(std::vector<double> &v1, std::vector<double> &v2) {
-    int l;
+double chebyshev(std::vector<double> &v1, std::vector<double> &v2) {
     double max, temp;
-    l = v1.size();
     max = v1.at(0) - v2.at(0);
     if ((max < 0)) {
         max = max * (-1);
     }
-    for (int i = 1; i < l; ++i) {
+    for (int i = 1; i < v1.size(); ++i) {
         temp = (v1.at(i) - v2.at(i));
         if (temp < 0)
             temp = temp * (-1);

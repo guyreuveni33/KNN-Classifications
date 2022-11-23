@@ -7,14 +7,14 @@
  * @return a boolean value.
  */
 int main() {
-    std::vector<double> FirstVector, SecondVector;
-    if(!(InsertToVector(FirstVector))){
+    std::vector<double> firstVector, secondVector;
+    if(!(insertToVector(firstVector))){
         return 0;
     }
-    if(!(InsertToVector(SecondVector))){
+    if(!(insertToVector(secondVector))){
         return 0;
     }
-    if(!(CalculateDistance(FirstVector, SecondVector))) {
+    if(!(calculateDistance(firstVector, secondVector))) {
         return 0;
     }
     return 0;

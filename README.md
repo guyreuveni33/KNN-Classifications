@@ -4,7 +4,7 @@ Advanced Programming 1 by Niv Swisa & Guy Reuveni -
 
 WHAT THE PROGRAM DOES :
 
-The program receives two vectors and calculates the distance between them using 5 different distance algorithms. The algorithms used are "Minkowski", "Euclidean", "Manhattan", "Canberra" and "Chebyshev".
+The program receives two vectors and calculates the distance between them using 5 different distance algorithms. The algorithms used are "minkowski", "euclidean", "manhattan", "canberra" and "chebyshev".
 
 HOW TO RUN THE PROGRAM :
 In order to run the program you need to clone it to your PC and :
@@ -33,8 +33,8 @@ NOTES :
 
 3. if one of the values is greater than a double value the program will shut down. 
 
-4. The Minkowski algorithm is the base to the Manhattan and Euclidean algorithms. In Manhattan the p value is the constant 1 and in the Euclidean the p value is the constant 2.
+4. The minkowski algorithm is the base to the manhattan and euclidean algorithms. In manhattan the p value is the constant 1 and in the euclidean the p value is the constant 2.
 
-5. The p Value chosen for the Minkowski algorithm is the constant 2.
+5. The p Value chosen for the minkowski algorithm is the constant 2.
 
-6. In the Canberra algorithm we covered the case where the division by zero could occur and made sure to avoid the calculation.
+6. In the canberra algorithm we covered the case where the division by zero could occur and made sure to avoid the calculation.

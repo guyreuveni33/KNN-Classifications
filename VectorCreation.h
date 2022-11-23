@@ -8,7 +8,7 @@
  *
  * @return The number of digits after the decimal point.
  */
-int PrecisionNum(double d);
+int precisionNum(double d);
 
 /**
  * If the first character is a digit or a negative sign, and if there are no more than one decimal point, and if all the
@@ -18,16 +18,16 @@ int PrecisionNum(double d);
  *
  * @return a boolean value.
  */
-int NumCheck(std::string s);
+int numCheck(std::string s);
 
 /**
  * It checks if the string is empty, if the first character is a space, and if there are any double spaces
  *
- * @param TextLine The string that is being checked.
+ * @param textLine The string that is being checked.
  *
  * @return an integer.
  */
-int StringValidation(std::string TextLine);
+int stringValidation(std::string textLine);
 
 /**
  * It takes a vector of doubles as a parameter, reads a line from the standard input, checks if the line is valid, and
@@ -37,15 +37,15 @@ int StringValidation(std::string TextLine);
  *
  * @return 1 if the function was successful, 0 if it was not.
  */
-int InsertToVector(std::vector<double> &vector);
+int insertToVector(std::vector<double> &vector);
 
 /**
- * It takes two vectors of doubles, and calculates the Euclidean, Manhattan, Chebyshev, Canberra, and Minkowski
+ * It takes two vectors of doubles, and calculates the euclidean, manhattan, chebyshev, canberra, and minkowski
  * distances between them
  *
- * @param FirstVector the first vector
- * @param SecondVector the second vector to be compared
+ * @param firstVector the first vector
+ * @param secondVector the second vector to be compared
  *
  * @return 1
  */
-int CalculateDistance(std::vector<double> &FirstVector, std::vector<double> &SecondVector);
+int calculateDistance(std::vector<double> &firstVector, std::vector<double> &secondVector);

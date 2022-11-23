@@ -3,13 +3,13 @@
 #include <iostream>
 #include <sstream>
 
-int PrecisionNum(double d) {
+int precisionNum(double d) {
     if (d == (int) d) {
         return 1;
     } else return 16;
 }
 
-int NumCheck(std::string s) {
+int numCheck(std::string s) {
     int i, flag = 0, flag2 = 0;
     // This is checking if the first character is a digit or a minus sign.
     if (!isdigit(s.at(0)) && (s.at(0) != 45)) {
@@ -38,39 +38,39 @@ int NumCheck(std::string s) {
     return 1;
 }
 
-int StringValidation(std::string TextLine) {
+int stringValidation(std::string textLine) {
     int i;
     // This is checking if the string is empty.
-    if (TextLine.empty()) {
+    if (textLine.empty()) {
         return 0;
     }
     // This is checking if the first character is a space.
-    if (TextLine.at(0) >= 1 && TextLine.at(0) <= 32) {
+    if (textLine.at(0) >= 1 && textLine.at(0) <= 32) {
         return 0;
     }
     // This is checking if there are two spaces in a row.
-    for (i = 1; i < TextLine.size(); i++) {
-        if (TextLine.at(i) >= 1 && TextLine.at(i) <= 31) {
+    for (i = 1; i < textLine.size(); i++) {
+        if (textLine.at(i) >= 1 && textLine.at(i) <= 31) {
             return 0;
         }
-        if (TextLine.at(i - 1) == 32 && TextLine.at(i) == 32) {
+        if (textLine.at(i - 1) == 32 && textLine.at(i) == 32) {
             return 0;
         }
     }
     return 1;
 }
 
-int InsertToVector(std::vector<double> &vector) {
-    std::string TextLine;
-    getline(std::cin, TextLine);
+int insertToVector(std::vector<double> &vector) {
+    std::string textLine;
+    getline(std::cin, textLine);
     // This is checking if the string is empty.
-    if (!StringValidation(TextLine))
+    if (!stringValidation(textLine))
         return 0;
-    std::istringstream LineStream(TextLine);
+    std::istringstream lineStream(textLine);
     std::string s;
     // This is checking if the string is a number.
-    while (LineStream >> s) {
-        if (!NumCheck(s)) {
+    while (lineStream >> s) {
+        if (!numCheck(s)) {
             return 0;
         }
         try {
@@ -81,34 +81,34 @@ int InsertToVector(std::vector<double> &vector) {
             return 0;
         }
     }
-    LineStream.clear();
+    lineStream.clear();
     return 1;
 }
 
-int CalculateDistance(std::vector<double> &FirstVector, std::vector<double> &SecondVector) {
+int calculateDistance(std::vector<double> &firstVector, std::vector<double> &secondVector) {
     // This is checking if the vectors are the same size.
-    if (FirstVector.size() != SecondVector.size()) {
-        std::cout << "the vectors are non equivalent";
+    if (firstVector.size() != secondVector.size()) {
+        std::cout << "the vectors are not of the same size";
         return 0;
     }
-    double EuclideanNum, ManhattanNum, ChebyshevNum, CanberraNum, MinkowskiNum;
+    double euclideanNum, manhattanNum, chebyshevNum, canberraNum, minkowskiNum;
     //calculating all the algorithms
-    EuclideanNum = Euclidean(FirstVector, SecondVector);
-    ManhattanNum = Manhattan(FirstVector, SecondVector);
-    ChebyshevNum = Chebyshev(FirstVector, SecondVector);
-    CanberraNum = Canberra(FirstVector, SecondVector);
-    MinkowskiNum = Minkowski(FirstVector, SecondVector, 2);
+    euclideanNum = euclidean(firstVector, secondVector);
+    manhattanNum = manhattan(firstVector, secondVector);
+    chebyshevNum = chebyshev(firstVector, secondVector);
+    canberraNum = canberra(firstVector, secondVector);
+    minkowskiNum = minkowski(firstVector, secondVector, 2);
     //printing all the results
     std::fixed(std::cout);
-    std::cout.precision(PrecisionNum(EuclideanNum));
-    std::cout << EuclideanNum << std::endl;
-    std::cout.precision(PrecisionNum(ManhattanNum));
-    std::cout << ManhattanNum << std::endl;
-    std::cout.precision(PrecisionNum(ChebyshevNum));
-    std::cout << ChebyshevNum << std::endl;
-    std::cout.precision(PrecisionNum(CanberraNum));
-    std::cout << CanberraNum << std::endl;
-    std::cout.precision(PrecisionNum(MinkowskiNum));
-    std::cout << MinkowskiNum << std::endl;
+    std::cout.precision(precisionNum(euclideanNum));
+    std::cout << euclideanNum << std::endl;
+    std::cout.precision(precisionNum(manhattanNum));
+    std::cout << manhattanNum << std::endl;
+    std::cout.precision(precisionNum(chebyshevNum));
+    std::cout << chebyshevNum << std::endl;
+    std::cout.precision(precisionNum(canberraNum));
+    std::cout << canberraNum << std::endl;
+    std::cout.precision(precisionNum(minkowskiNum));
+    std::cout << minkowskiNum << std::endl;
     return 1;
 }
