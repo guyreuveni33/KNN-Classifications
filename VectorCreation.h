@@ -1,4 +1,5 @@
 #include <vector>
+#include <string>
 
 /**
  * If the double is an integer, return 1, else return 16

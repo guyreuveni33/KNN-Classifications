@@ -1,5 +1,5 @@
 #include <vector>
-
+#include <string>
 /**
  * The function takes two vectors of the same size and calculates the Minkowski distance between them
  *
